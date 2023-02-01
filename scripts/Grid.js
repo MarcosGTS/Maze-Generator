@@ -58,7 +58,6 @@ class Grid {
   }
 
   mazeStep() {
-    if (this.checkComplition()) return;
     const node = this.stack[this.stack.length - 1];
     node.visite();
     if (node.toVisit.length > 0) {
@@ -67,6 +66,8 @@ class Grid {
     } else {
       this.stack.pop();
     }
+
+    return this.checkComplition();
   }
 
   render(context) {

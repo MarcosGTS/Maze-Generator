@@ -8,7 +8,7 @@ canvas.height = 500;
 const grid = new Grid(20, 20);
 grid.generateGrid();
 
-setInterval(() => {
-  grid.mazeStep();
+const loop = setInterval(() => {
   grid.render(context);
+  if (grid.mazeStep()) clearInterval(loop);
 }, 100);
