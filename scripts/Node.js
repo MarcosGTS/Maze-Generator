@@ -1,6 +1,6 @@
 class Node {
-  constructor(name, x, y) {
-    this.name = name;
+  constructor(index, x, y) {
+    this.index = index;
     this.position = { x, y };
     this.visited = false;
     this.neighbors = [];
@@ -10,6 +10,10 @@ class Node {
 
   wasVisited() {
     return this.visited;
+  }
+
+  getConnections() {
+    return this.connections;
   }
 
   addNeighbor(node) {

@@ -20,6 +20,9 @@ class Grid {
   }
 
   getNode(x, y) {
+    if (!this.isInsideGrid(x, y)) {
+      throw new Error('Invalid indexes');
+    }
     return this.grid[y][x];
   }
 
@@ -40,16 +43,16 @@ class Grid {
     const { width, height } = this;
     this.initList();
 
-    for (let i = 0; i < width; i += 1) {
-      for (let j = 0; j < height; j += 1) {
-        const name = `${i}, ${j}`;
-        this.grid[j][i] = new Node(name, i * 25 + 10, j * 25 + 10);
+    for (let i = 0; i < height; i += 1) {
+      for (let j = 0; j < width; j += 1) {
+        const index = { x: j, y: i };
+        this.grid[i][j] = new Node(index, j * 25 + 10, i * 25 + 10);
       }
     }
 
-    for (let i = 0; i < width; i += 1) {
-      for (let j = 0; j < height; j += 1) {
-        this.connectNode(i, j);
+    for (let i = 0; i < height; i += 1) {
+      for (let j = 0; j < width; j += 1) {
+        this.connectNode(j, i);
       }
     }
 
@@ -74,9 +77,9 @@ class Grid {
     const { width, height } = this;
     const crrNode = this.stack[this.stack.length - 1];
 
-    for (let i = 0; i < width; i += 1) {
-      for (let j = 0; j < height; j += 1) {
-        const node = this.getNode(i, j);
+    for (let i = 0; i < height; i += 1) {
+      for (let j = 0; j < width; j += 1) {
+        const node = this.getNode(j, i);
 
         context.lineWidth = 5;
         context.fillStyle = '#000000';
@@ -90,13 +93,15 @@ class Grid {
       }
     }
 
-    context.lineWidth = 1;
-    context.fillStyle = '#00ff00';
+    if (crrNode) {
+      context.lineWidth = 1;
+      context.fillStyle = '#00ff00';
 
-    context.beginPath();
-    context.arc(crrNode.position.x, crrNode.position.y, 6, 0, 2 * Math.PI);
-    context.fill();
-    context.stroke();
+      context.beginPath();
+      context.arc(crrNode.position.x, crrNode.position.y, 6, 0, 2 * Math.PI);
+      context.fill();
+      context.stroke();
+    }
   }
 
   checkComplition() {
