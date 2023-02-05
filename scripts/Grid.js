@@ -72,6 +72,10 @@ class Grid {
     return this.checkComplition();
   }
 
+  generateMaze() {
+    while (!this.mazeStep());
+  }
+
   render(context) {
     const { width, height } = this;
     const crrNode = this.stack[this.stack.length - 1];
