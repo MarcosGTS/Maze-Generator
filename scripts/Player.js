@@ -11,8 +11,7 @@ class Player {
   }
 
   getTargetNode(dirX, dirY) {
-    const x = this.crrNode.index.x;
-    const y = this.crrNode.index.y;
+    const { x, y } = this.crrNode.index;
 
     console.log(x, y, dirX, dirY);
     return this.grid.getNode(x + dirX, y + dirY);

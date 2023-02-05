@@ -21,6 +21,10 @@ class Node {
     this.toVisit.push(node);
   }
 
+  addConnection(node) {
+    this.connections.push(node);
+  }
+
   removeNeighbor(node) {
     this.toVisit = this.toVisit.filter((el) => el !== node);
   }
@@ -28,9 +32,7 @@ class Node {
   getRandomNeighbor() {
     const randomIndex = Math.floor(Math.random() * this.toVisit.length);
     const randomNeighbor = this.toVisit[randomIndex];
-    this.connections.push(randomNeighbor);
-    this.removeNeighbor(randomNeighbor);
-    randomNeighbor.removeNeighbor(this);
+    this.addConnection(randomNeighbor);
 
     return randomNeighbor;
   }

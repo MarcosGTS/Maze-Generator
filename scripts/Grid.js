@@ -65,6 +65,7 @@ class Grid {
     node.visite();
     if (node.toVisit.length > 0) {
       const neighbor = node.getRandomNeighbor();
+      neighbor.addConnection(node);
       this.stack.push(neighbor);
     } else {
       this.stack.pop();
