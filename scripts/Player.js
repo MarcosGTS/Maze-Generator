@@ -23,11 +23,11 @@ class Player {
 
   render(context) {
     const { x, y } = this.crrNode.position;
+
     context.fillStyle = '#ff0000';
     context.beginPath();
     context.arc(x, y, 10, 0, 2 * Math.PI);
     context.fill();
-    context.stroke();
   }
 }
 

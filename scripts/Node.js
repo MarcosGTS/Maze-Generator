@@ -47,7 +47,8 @@ class Node {
   drawConnections(context) {
     const originX = this.position.x;
     const originY = this.position.y;
-    context.lineWidth = 5;
+
+    context.lineWidth = 14;
 
     this.connections.forEach((neighbor) => {
       const neighborX = neighbor.position.x;

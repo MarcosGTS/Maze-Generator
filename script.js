@@ -23,8 +23,8 @@ function finish() {
     if (functions[event.key]) functions[event.key]();
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    player.render(context);
     grid.render(context);
+    player.render(context);
   });
 }
 
@@ -35,3 +35,6 @@ const loop = setInterval(() => {
     finish();
   }
 }, 50);
+
+// grid.generateMaze();
+// grid.render(context);

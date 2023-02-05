@@ -84,13 +84,11 @@ class Grid {
       for (let j = 0; j < width; j += 1) {
         const node = this.getNode(j, i);
 
-        context.lineWidth = 5;
         context.fillStyle = '#000000';
 
         context.beginPath();
-        context.arc(node.position.x, node.position.y, 4, 0, 2 * Math.PI);
+        context.arc(node.position.x, node.position.y, 7, 0, 2 * Math.PI);
         context.fill();
-        context.stroke();
 
         node.drawConnections(context);
       }
