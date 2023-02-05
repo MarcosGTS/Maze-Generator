@@ -2,28 +2,23 @@ class Player {
   constructor(grid, initialNode) {
     this.grid = grid;
     this.crrNode = initialNode;
-    this.lastNode = null;
   }
 
   isValidMove(targetNode) {
-    if (targetNode === this.lastNode) return true;
     return this.crrNode.getConnections().includes(targetNode);
   }
 
   getTargetNode(dirX, dirY) {
     const { x, y } = this.crrNode.index;
+    const newNode = this.grid.getNode(x + dirX, y + dirY);
 
-    console.log(x, y, dirX, dirY);
-    return this.grid.getNode(x + dirX, y + dirY);
+    if (this.isValidMove(newNode)) return newNode;
+    return this.crrNode;
   }
 
   move(direction) {
     const targetNode = this.getTargetNode(direction.x, direction.y);
-
-    if (this.isValidMove(targetNode)) {
-      this.lastNode = this.crrNode;
-      this.crrNode = targetNode;
-    }
+    this.crrNode = targetNode;
   }
 
   render(context) {

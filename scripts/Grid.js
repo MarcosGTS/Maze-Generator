@@ -20,10 +20,8 @@ class Grid {
   }
 
   getNode(x, y) {
-    if (!this.isInsideGrid(x, y)) {
-      throw new Error('Invalid indexes');
-    }
-    return this.grid[y][x];
+    if (this.isInsideGrid(x, y)) return this.grid[y][x];
+    return null;
   }
 
   connectNode(x, y) {

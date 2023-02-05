@@ -6,7 +6,7 @@ const context = canvas.getContext('2d');
 canvas.width = 500;
 canvas.height = 500;
 
-const grid = new Grid(3, 3);
+const grid = new Grid(20, 20);
 grid.generateGrid();
 
 function finish() {
@@ -31,7 +31,6 @@ function finish() {
 const loop = setInterval(() => {
   grid.render(context);
   if (grid.mazeStep()) {
-    console.log('teste');
     clearInterval(loop);
     finish();
   }
